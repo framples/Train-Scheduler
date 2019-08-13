@@ -51,10 +51,16 @@ dataRef.ref().on("child_added", function(childSnapshot) {
     console.log(childSnapshot.val().firstTrainTime);
     console.log(childSnapshot.val().frequency);
 
-    var tFrequency = frequency;
+    
+
+
+    
+    
+    
+    var tFrequency = childSnapshot.val().frequency;
 
     // time set to input
-    var firstTime = firstTrainTime;
+    var firstTime = childSnapshot.val().firstTrainTime;
 
     // First Time (pushed back 1 year to make sure it comes before current time)
     var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
@@ -78,11 +84,13 @@ dataRef.ref().on("child_added", function(childSnapshot) {
 
     // Next Train
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    var nextTrainTime = moment(nextTrain).format("h:mm A");
     console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
     // code to create a row with saved information from database
-    var newRowItem = $("<tr><td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().destination + "</td><td>" + childSnapshot.val().frequency + "</td></tr>");
+    var newRowItem = $("<tr><td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().destination + "</td><td>" + childSnapshot.val().frequency + "</td><td>" + nextTrainTime + "</td><td>" + tMinutesTillTrain + "</td></tr>");
     $("#tableOfTrains").append(newRowItem);
+
 
     });
 
