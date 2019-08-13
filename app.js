@@ -50,4 +50,11 @@ dataRef.ref().on("child_added", function(childSnapshot) {
     console.log(childSnapshot.val().destination);
     console.log(childSnapshot.val().firstTrainTime);
     console.log(childSnapshot.cal().frequency);
+
+    var newRowItem = $("<tr><td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().destination + "</td><td>" + childSnapshot.val().firstTrainTime + "</td><td>" + childSnapshot.val().frequency + "</td></tr>");
+    $("$tableOfTrains").append(newRowItem);
+    
+
+
+
 });
