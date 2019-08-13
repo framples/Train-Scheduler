@@ -20,6 +20,10 @@ var destination = "";
 var firstTrainTime = "";
 var frequency = "";
 
+//unsure about the two open columns that we need moment.js to fill - adding variables now in case i need them empty to start
+// var nextArrival = "";
+// var minutesAway = "";
+
 
 // on click event to set variables to input on form
 $("#add-train").on("click", function (event) {
@@ -32,8 +36,18 @@ $("#add-train").on("click", function (event) {
 
     dataRef.ref().push({
 
+        name: name,
+        destination: destination,
+        firstTrainTime: firstTrainTime,
+        frequency: frequency,
+        dateAdded: firebase.database.ServerValue.TIMESTAMP
+    });
+});
 
-    })
+dataRef.ref().on("child_added", function(childSnapshot) {
 
-
-})
+    console.log(childSnapshot.val().name);
+    console.log(childSnapshot.val().destination);
+    console.log(childSnapshot.val().firstTrainTime);
+    console.log(childSnapshot.cal().frequency);
+});
