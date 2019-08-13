@@ -44,7 +44,7 @@ $("#add-train").on("click", function (event) {
     });
 });
 
-dataRef.ref().on("child_added", function (childSnapshot) {
+dataRef.ref().on("child_added", function(childSnapshot) {
 
     console.log(childSnapshot.val().name);
     console.log(childSnapshot.val().destination);
@@ -53,7 +53,7 @@ dataRef.ref().on("child_added", function (childSnapshot) {
 
     var tFrequency = frequency;
 
-    // Time is 3:30 AM
+    // time set to input
     var firstTime = firstTrainTime;
 
     // First Time (pushed back 1 year to make sure it comes before current time)
@@ -80,19 +80,11 @@ dataRef.ref().on("child_added", function (childSnapshot) {
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
     console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
-
-    dataRef.ref().push({
-
-
-    })
-
-
-
     // code to create a row with saved information from database
     var newRowItem = $("<tr><td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().destination + "</td><td>" + childSnapshot.val().frequency + "</td></tr>");
     $("#tableOfTrains").append(newRowItem);
 
+    });
 
 
 
-});
