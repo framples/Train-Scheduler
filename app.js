@@ -12,3 +12,12 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 
   var dataRef = firebase.database();
+
+  // setting form initial values to empty
+
+  var name = "";
+  var destionation = "";
+  var firstTrainTime = "";
+  var frequency = "";
+
+  
